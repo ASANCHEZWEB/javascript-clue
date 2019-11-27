@@ -1,14 +1,15 @@
 // ITERATION 1
+
 // Suspects Collection
 const suspectsArray = [
   {
     firstName: "Jacob",
     lastName: "Green",
     occupation: "Entrepreneur",
-    age: 45,
+    age: "45",
     description: "He has a lot of connections",
     image:
-      "https://pbs.twimg.com/profile_images/506787499331428352/65jTv2uC.jpeg",
+      "https//pbs.twimg.com/profile_images/506787499331428352/65jTv2uC.jpeg",
     color: "green"
   },
   {
@@ -28,7 +29,7 @@ const suspectsArray = [
     description: "Billionaire video game designer",
     image:
       "https://66.media.tumblr.com/ee7155882178f73b3781603f0908617c/tumblr_phhxc7EhPJ1w5fh03_540.jpg",
-    color: "whpurpleite"
+    color: "purple"
   },
   {
     firstName: "Kasandra",
@@ -61,39 +62,86 @@ const suspectsArray = [
     color: "yellow"
   }
 ];
-
 // Rooms Collection
 const roomsArray = [
-  "Dining Room",
-  "Conservatory",
-  "Kitchen",
-  "Study",
-  "Library",
-  "Billiard Room",
-  "Lounge",
-  "Ballroom",
-  "Hall",
-  "Spa",
-  "Living Room",
-  "Observatory",
-  "Theater",
-  "Guest House",
-  "Patio"
+  {
+    name: "Dining Room",
+    name: "Conservatory",
+    name: "Kitchen",
+    name: "Study",
+    name: "Library",
+    name: "Billiard-Room",
+    name: "Lounge",
+    name: "Ballroom",
+    name: "Hall",
+    name: "Spa",
+    name: "Living-Room",
+    name: "Observatory",
+    name: "Theater",
+    name: "GuestHouse",
+    name: "Patio"
+  }
 ];
 
 // Weapons Collection
 const weaponsArray = [
-    {name: "rope", weight: 10},
-    {name: "knife", weight: 8},
-    {name: "candlestick", weight: 2},
-    {name: "dumbbell", weight: 30},
-    {name: "poison", weight: 2},
-    {name: "axe", weight: 15},
-    {name: "bat", weight: 13},
-    {name: "trophy", weight: 25},
-    {name: "pistol", weight: 20},
+  {
+    name: "rope",
+    weight: 10
+  },
+  {
+    name: "knife",
+    weight: 8
+  },
+  {
+    name: "candlestick",
+    weight: 2
+  },
+  {
+    name: "dumbbell",
+    weight: 30
+  },
+  {
+    name: "poison",
+    weight: 2
+  },
+  {
+    name: "axe",
+    weight: 15
+  },
+  {
+    name: "bat",
+    weight: 13
+  },
+  {
+    name: "trophy",
+    weight: 25
+  },
+  {
+    name: "pistol",
+    weight: 20
+  }
 ];
-
 // ITERATION 2
+// se crea la funcion flecha selectrandom que selecciona un elemento aleatorio del array de cada colección de cartas , calcula un numero entre 0.0
+//y 1.0 lo multiplica por la cantidad de elementos del array y los redondea por lo bajo
 
+let selectRandom = randomArr => {
+  return randomArr[Math.floor(Math.random() * randomArr.length)];
+};
+//pickMystery recibe los elementos calculados en el return de selectRandom function
+//y devuelve un objeto con cada uno de los datos que ha seleccionado selectRandom
+let pickMystery = () => {
+  return {
+    suspect: selectRandom(suspectsArray),
+    weapon: selectRandom(weaponsArray),
+    room: selectRandom(roomsArray)
+  };
+};
 // ITERATION 3
+//revealMystery recive el parametro envelope desde el return de la funcion (pickMystery), por eso al invocarla abajo se le pasa la funcion como parametro
+let revealMystery = envelope => {
+  return `${envelope.suspect.firstName} ${envelope.suspect.lastName} killed Mr. Boddy using the ${envelope.weapon.name} in the ${envelope.room.name}!`;
+};
+
+revealMystery(pickMystery());
